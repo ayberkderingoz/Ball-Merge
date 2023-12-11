@@ -9,4 +9,17 @@ public class ButtonUI : MonoBehaviour
         Debug.Log("Restart");
         GameManager.Instance.Restart();
     }
+    
+    //open menu
+    public void OpenMenu()
+    {
+        
+        GameManager.Instance.OpenMenu();
+        
+    }
+
+    public void CloseMenu()
+    {
+        GameManager.Instance.CloseMenu();   
+    }
 }

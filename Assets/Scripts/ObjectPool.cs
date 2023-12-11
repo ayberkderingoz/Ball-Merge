@@ -33,7 +33,7 @@ public class PooledObject
 [Serializable]
 public enum PooledObjectType
 {
-    Fog,
+    MergeParticle,
     TennisBall,
     Baseball,
     Volleyball,

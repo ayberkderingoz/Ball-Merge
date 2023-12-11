@@ -44,10 +44,20 @@ public class BallManager : MonoBehaviour
         ball.gameObject.SetActive(true);
         ball.gameObject.GetComponent<Ball>().SetBall(nextBall,ball);
         
+        //get particle from objectpool
+        var particle = ObjectPool.Instance.GetPooledObject(PooledObjectType.MergeParticle);
+        particle.transform.position = ball.transform.position;
+        particle.gameObject.SetActive(true);
+        particle.gameObject.GetComponent<ParticleSystem>().Play();
+        particle.gameObject.GetComponent<Particle>().pooledObject = particle;
+        particle.gameObject.GetComponent<Particle>().DestroyObject();
         
         //Returns the balls to the pool
         ballsToMerge[0].GetComponent<Ball>()._pooledObject.ReturnToPool();
         ballsToMerge[1].GetComponent<Ball>()._pooledObject.ReturnToPool();
+        
+        
+        ScoreManager.Instance.AddScore((int)nextBall);
         
         
     }

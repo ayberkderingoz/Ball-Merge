@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     
     
     [SerializeField] private GameObject _restartPanel;
+    [SerializeField] private GameObject _menuPanel;
 
     private void Awake()
     {
@@ -28,7 +29,11 @@ public class GameManager : MonoBehaviour
         //restart the game
         BallManager.Instance.Restart();
         _restartPanel.SetActive(false);
+        _menuPanel.SetActive(false);
         isPaused = false;
+        ScoreManager.Instance.SaveMaxScore();
+        ScoreManager.Instance.ResetScore();
+        
         //TODO: restart the score
         
     }
@@ -38,10 +43,23 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isPaused = true;
+        BallManager.Instance.Restart();
         OpenRestartPanel();
+        ScoreManager.Instance.ShowGameOverScore();
     }
     public void OpenRestartPanel()
     {
         _restartPanel.SetActive(true);
     }
+
+    public void OpenMenu()
+    {
+        _menuPanel.SetActive(true);
+    }
+
+    public void CloseMenu()
+    {
+        _menuPanel.SetActive(false);
+    }
+    
 }
