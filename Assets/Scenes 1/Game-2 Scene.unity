@@ -2991,7 +2991,7 @@ MonoBehaviour:
     parent: {fileID: 454912551}
   - type: 0
     gameObject: {fileID: 7416281626780933165, guid: f69374d90784042a08547daaaced9318, type: 3}
-    amount: 10
+    amount: 20
     parent: {fileID: 454912551}
   isPoolSet: 0
 --- !u!4 &2135905861
