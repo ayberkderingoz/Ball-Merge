@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Scripts.Enum;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using Random = UnityEngine.Random;
 
 public class BallManager : MonoBehaviour
@@ -17,6 +19,9 @@ public class BallManager : MonoBehaviour
     
     
     public List<GameObject> ballsToMerge = new List<GameObject>();
+    
+    
+    [SerializeField] private GameObject _americanBallScoreImage;
     
 
 
@@ -33,6 +38,11 @@ public class BallManager : MonoBehaviour
             ballsToMerge.Clear();
         }
     }
+    
+    
+    
+    
+
 
     private void MergeBall()
     {
@@ -55,18 +65,22 @@ public class BallManager : MonoBehaviour
         //Returns the balls to the pool
         ballsToMerge[0].GetComponent<Ball>()._pooledObject.ReturnToPool();
         ballsToMerge[1].GetComponent<Ball>()._pooledObject.ReturnToPool();
-        
-        
+
+        StartCoroutine(SpawnBallAnimated(ball.gameObject));
         ScoreManager.Instance.AddScore((int)nextBall);
-        
-        
+
+        if (nextBall == PooledObjectType.AmericanFootball)
+        {
+            StartCoroutine(LerpBallToScoreImage(ball.gameObject));
+            ScoreManager.Instance.AddAmericanFootballScore();
+        }
+
+
     }
 
     private PooledObjectType GetNextBall()
     {
         var type = ballsToMerge[0].GetComponent<Ball>()._type;
-        if (type == PooledObjectType.AmericanFootball) return PooledObjectType.AmericanFootball; //TODO: if the ball is the last one pop it 
-        
         return type + 1;
     }
 
@@ -102,7 +116,6 @@ public class BallManager : MonoBehaviour
 
     public void Restart()
     {
-        //restart
         foreach (var ball in activeBalls)
         {
             ball.ReturnToPool();
@@ -111,4 +124,41 @@ public class BallManager : MonoBehaviour
         ballsToMerge.Clear();
         BallSpawner.Instance.SpawnBall();
     }
+    //Create ball smoothly
+    private IEnumerator SpawnBallAnimated(GameObject ball)
+    {
+        //lerp to original scale from 0
+        //get original scale
+        var scale = ball.transform.localScale;
+        ball.transform.localScale = Vector3.zero;
+        float elapsedTime = 0;
+        float waitTime = 0.2f;
+        while (elapsedTime < waitTime)
+        {
+            ball.transform.localScale = Vector3.Lerp(Vector3.zero, scale, (elapsedTime / waitTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+
+    }
+    
+    //lerp the ball to the position of americanfootbalImage
+    public IEnumerator LerpBallToScoreImage(GameObject ball)
+    {
+        var pos = _americanBallScoreImage.transform.position;
+        float elapsedTime = 0;
+        float waitTime = 2f;
+        yield return new WaitForSeconds(1f);
+        while (elapsedTime < waitTime)
+        {
+            ball.transform.position = Vector3.Lerp(ball.transform.position, pos, (elapsedTime / waitTime));
+            ball.transform.localScale = Vector3.Lerp(ball.transform.localScale, Vector3.zero, (elapsedTime / waitTime));
+            ball.transform.Rotate(0,0,Time.deltaTime * 1000);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        ball.GetComponent<Ball>()._pooledObject.ReturnToPool();
+    }
+
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
         [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private TextMeshProUGUI americanScoreText;
         [SerializeField] private TextMeshProUGUI gameOverScoreText;
         
         
@@ -25,7 +26,11 @@ public class ScoreManager : MonoBehaviour
         {
                 scoreText.text = (int.Parse(scoreText.text) + score).ToString();
         }
-        
+
+        public void AddAmericanFootballScore()
+        {
+                americanScoreText.text = (int.Parse(americanScoreText.text) + 1).ToString();
+        }
         
         public void ResetScore()
         {
@@ -53,5 +58,6 @@ public class ScoreManager : MonoBehaviour
         {
                 gameOverScoreText.text = scoreText.text;
         }
+        
         
 }

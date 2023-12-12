@@ -42,10 +42,19 @@ public class Ball : MonoBehaviour
             elapsed += Time.fixedDeltaTime;
             if (elapsed > 1f)
             {
+                
                 Debug.Log("Game OVer");
                 GameManager.Instance.GameOver();
                 elapsed = 0f;
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("LevelTrigger"))
+        {
+            elapsed = 0f;
         }
     }
 
@@ -67,7 +76,10 @@ public class Ball : MonoBehaviour
     {
         GetComponent<CircleCollider2D>().enabled = true;
     }
-    
+    public void ResetElapsed()
+    {
+        elapsed = 0f;
+    }
     
     
 
