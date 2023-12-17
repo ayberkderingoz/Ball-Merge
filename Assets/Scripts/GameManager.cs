@@ -23,9 +23,10 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
     }
-    
+    public Action OnRestart;
     public void Restart()
     {
+        OnRestart?.Invoke(); // TODO
         //restart the game
         BallManager.Instance.Restart();
         _restartPanel.SetActive(false);
@@ -34,7 +35,6 @@ public class GameManager : MonoBehaviour
         ScoreManager.Instance.SaveMaxScore();
         ScoreManager.Instance.ResetScore();
         
-        //TODO: restart the score
         
     }
 

@@ -7,6 +7,7 @@ public class Particle : MonoBehaviour
     public float lifeTime;
     public PooledObject pooledObject;
     
+
     public void DestroyObject()
     {
         Invoke(nameof(Disable), lifeTime);

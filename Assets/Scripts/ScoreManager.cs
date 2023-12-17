@@ -35,6 +35,7 @@ public class ScoreManager : MonoBehaviour
         public void ResetScore()
         {
                 scoreText.text = "0";
+                americanScoreText.text = "0";
         }
         
         

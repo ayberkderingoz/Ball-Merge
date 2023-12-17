@@ -27,6 +27,7 @@ public class BallManager : MonoBehaviour
 
     public void AddBallToMerge(GameObject ball)
     {
+        // TODO: Gamobjectler için Contains yapmak yerine gameobject.name veya nesnelerini classlarını çekip id verebilirsin
         if (ballsToMerge.Contains(ball))
         {
             return;

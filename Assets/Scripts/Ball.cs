@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -8,12 +9,13 @@ public class Ball : MonoBehaviour
     public PooledObjectType _type;
     public PooledObject _pooledObject;
     public bool isActive = false;
+    public  Rigidbody2D _rigidbody2D;
     
     public float elapsed = 0f;
     
     void Start()
     {
-        
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
     
 
@@ -23,7 +25,7 @@ public class Ball : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ball"))
         {
@@ -31,9 +33,11 @@ public class Ball : MonoBehaviour
             {
                 MergeBall(other);
             }
+            
         }
         
     }
+    
 
     private void OnTriggerStay2D(Collider2D other)
     {
