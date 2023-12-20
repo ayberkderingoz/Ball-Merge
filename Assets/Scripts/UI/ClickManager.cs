@@ -5,31 +5,44 @@ using UnityEngine;
 public class ClickManager : MonoBehaviour
 {
     private Camera _camera;
-    // Start is called before the first frame update
     
+    public float _cooldown = 1.2f;
+    private float _currentCooldown = 0f;
+    private bool _isClickable = true;
     
+
+
     void Start()
     {
         _camera = Camera.main;
-        //Debug.Log("ClickManager Start");
+        PanelManager.Instance.OnPanelOpen += OnPanelOpen;
+        PanelManager.Instance.OnPanelClose += OnPanelClose;
+
     }
 
-    // Update is called once per frame
+    private void OnPanelOpen()
+    {
+        _isClickable = false;
+    }
+
+    private void OnPanelClose()
+    {
+        _isClickable = true;
+    }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        _currentCooldown += Time.deltaTime;
+        if (Input.GetMouseButtonDown(0) && _currentCooldown >= _cooldown && _isClickable)
         {
-            Debug.Log("Mouse Clicked!");;
+            
             Vector3 mousePosition = Input.mousePosition;
 
             Vector3 worldPosition = _camera.ScreenToWorldPoint(mousePosition);
 
             DropBall(worldPosition);
-
+            _currentCooldown = 0f;
         }
     }
-    
-    
     
     private void DropBall(Vector3 position)
     {
@@ -40,13 +53,5 @@ public class ClickManager : MonoBehaviour
         activeBall.GetComponent<Ball>().StartDropping();
         BallSpawner.Instance.SpawnBall();
     }
-
-
-
-
-
-
-
-
 
 }

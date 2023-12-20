@@ -20,7 +20,23 @@ public class ScoreManager : MonoBehaviour
                         _instance = this;
                 }
         }
+
+        void Start()
+        {
+                GameManager.Instance.OnRestart += OnRestart;
+                GameManager.Instance.OnGameOver += OnGameOver;
+        }
         
+        private void OnRestart()
+        {
+                SaveMaxScore();
+                ResetScore();
+        }
+
+        private void OnGameOver()
+        {
+                ShowGameOverScore();
+        }
         
         public void AddScore(int score)
         {

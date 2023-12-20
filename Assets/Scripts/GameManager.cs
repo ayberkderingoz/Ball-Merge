@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //singleton
+    
     private static GameManager _instance;
     public static GameManager Instance => _instance;
 
     public bool isPaused = false;
     
+    private LoadBanner _loadBanner;
+    private LoadInterstitial _loadInterstitial;
+    private LoadRewarded _loadRewarded;
+    public GameObject adsManager;
     
-    
-    [SerializeField] private GameObject _restartPanel;
-    [SerializeField] private GameObject _menuPanel;
+
+    private int _restartCount = 0;
 
     private void Awake()
     {
@@ -23,43 +26,38 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
     }
+
+    void Start()
+    {
+        _loadBanner = adsManager.GetComponent<LoadBanner>();
+        _loadInterstitial = adsManager.GetComponent<LoadInterstitial>();
+        _loadRewarded = adsManager.GetComponent<LoadRewarded>();
+        _loadBanner.loadBanner();
+    }
     public Action OnRestart;
     public void Restart()
     {
-        OnRestart?.Invoke(); // TODO
-        //restart the game
-        BallManager.Instance.Restart();
-        _restartPanel.SetActive(false);
-        _menuPanel.SetActive(false);
+        OnRestart?.Invoke();
         isPaused = false;
-        ScoreManager.Instance.SaveMaxScore();
-        ScoreManager.Instance.ResetScore();
-        
-        
+        _restartCount++;
+        if (_restartCount % 3 == 0)
+        {
+            _loadInterstitial.LoadAd();
+        }
+
     }
-
-
-
+    
+    public Action OnGameOver;
     public void GameOver()
     {
         isPaused = true;
-        BallManager.Instance.Restart();
-        OpenRestartPanel();
-        ScoreManager.Instance.ShowGameOverScore();
-    }
-    public void OpenRestartPanel()
-    {
-        _restartPanel.SetActive(true);
+        OnGameOver?.Invoke();
     }
 
-    public void OpenMenu()
+    public void ContinueWithAd()
     {
-        _menuPanel.SetActive(true);
-    }
-
-    public void CloseMenu()
-    {
-        _menuPanel.SetActive(false);
+        PanelManager.Instance.CloseGameOverPanel();
+        _loadRewarded.LoadAd();
     }
     
 }

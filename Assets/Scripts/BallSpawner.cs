@@ -39,10 +39,25 @@ public class BallSpawner : MonoBehaviour
         activeBall.gameObject.SetActive(true);
         activeBall.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
         activeBall.gameObject.GetComponent<Ball>().DisableCollider();
+        StartCoroutine(AnimateBall(activeBall));
     }
     public GameObject GetActiveBall()
     {
         return activeBall;
+    }
+
+    private IEnumerator AnimateBall(GameObject ball)
+    {
+        var scale = ball.transform.localScale;
+        ball.transform.localScale = Vector3.zero;
+        float elapsedTime = 0;
+        while (elapsedTime < 0.5f)
+        {
+            ball.transform.localScale = Vector3.Lerp(Vector3.zero, scale, (elapsedTime / 0.5f));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        ball.transform.localScale = scale;
     }
     
 }

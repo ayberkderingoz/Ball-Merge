@@ -39,10 +39,24 @@ public class BallManager : MonoBehaviour
             ballsToMerge.Clear();
         }
     }
+
+
+    void Start()
+    {
+        GameManager.Instance.OnRestart += OnRestart;
+        GameManager.Instance.OnGameOver += OnGameOver;
+    }
     
     
-    
-    
+    private void OnRestart() //TODO: Remove
+    {
+        Restart();
+    }
+
+    private void OnGameOver()
+    {
+        Restart();
+    }
 
 
     private void MergeBall()
@@ -101,7 +115,7 @@ public class BallManager : MonoBehaviour
 
     public GameObject GetRandomBall()
     {
-        PooledObjectType ballType = (PooledObjectType)Random.Range(1, 5);
+        PooledObjectType ballType = (PooledObjectType)Random.Range(1, 4);
         var ball = ObjectPool.Instance.GetPooledObject(ballType);
         activeBalls.Add(ball);
         ball.gameObject.GetComponent<Ball>().SetBall(ballType,ball);
@@ -149,7 +163,7 @@ public class BallManager : MonoBehaviour
     {
         var pos = _americanBallScoreImage.transform.position;
         float elapsedTime = 0;
-        float waitTime = 2f;
+        float waitTime = 4f;
         yield return new WaitForSeconds(1f);
         while (elapsedTime < waitTime)
         {

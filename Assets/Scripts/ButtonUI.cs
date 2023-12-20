@@ -14,12 +14,17 @@ public class ButtonUI : MonoBehaviour
     public void OpenMenu()
     {
         
-        GameManager.Instance.OpenMenu();
+        PanelManager.Instance.OpenRestartPanel();
         
     }
 
     public void CloseMenu()
     {
-        GameManager.Instance.CloseMenu();   
+        PanelManager.Instance.CloseRestartPanel();  
+    }
+    
+    public void ContinueWithAd()
+    {
+        GameManager.Instance.ContinueWithAd();
     }
 }
