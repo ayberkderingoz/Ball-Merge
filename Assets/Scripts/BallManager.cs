@@ -23,7 +23,7 @@ public class BallManager : MonoBehaviour
     
     [SerializeField] private GameObject _americanBallScoreImage;
     
-
+    public Action OnBallMerge;
 
     public void AddBallToMerge(GameObject ball)
     {
@@ -80,7 +80,9 @@ public class BallManager : MonoBehaviour
         //Returns the balls to the pool
         ballsToMerge[0].GetComponent<Ball>()._pooledObject.ReturnToPool();
         ballsToMerge[1].GetComponent<Ball>()._pooledObject.ReturnToPool();
-
+        
+        OnBallMerge?.Invoke(); //plays sound for now
+        
         StartCoroutine(SpawnBallAnimated(ball.gameObject));
         ScoreManager.Instance.AddScore((int)nextBall);
 
