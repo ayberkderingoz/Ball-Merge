@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonUI : MonoBehaviour
 {
@@ -44,5 +45,15 @@ public class ButtonUI : MonoBehaviour
     public void ContinueWithAd()
     {
         GameManager.Instance.ContinueWithAd();
+    }
+
+    public void StartGame()
+    {
+        
+        OnButtonClick?.Invoke();
+        SceneManager.LoadScene("Game Scene");
+        
+        
+        
     }
 }

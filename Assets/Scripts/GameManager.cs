@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     
 
     private int _restartCount = 0;
+    
+    
+    
+    
 
     private void Awake()
     {
