@@ -58,6 +58,7 @@ public class LoadRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
         if (placementId.Equals(adUnitId)&&showCompletionState.Equals(UnityAdsCompletionState.COMPLETED))
         {
             print("Rewarded show complete , Distribute the rewards");
+            PanelManager.Instance.CloseGameOverPanel();
         }
     }
 

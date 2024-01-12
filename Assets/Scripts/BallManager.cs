@@ -76,7 +76,22 @@ public class BallManager : MonoBehaviour
         particle.gameObject.GetComponent<ParticleSystem>().Play();
         particle.gameObject.GetComponent<Particle>().pooledObject = particle;
         particle.gameObject.GetComponent<Particle>().DestroyObject();
-        
+
+
+        var ball0Rigidbody = ballsToMerge[0].GetComponent<Rigidbody2D>();
+        var ball1Rigidbody = ballsToMerge[1].GetComponent<Rigidbody2D>();
+
+        var ball0Velocity = ball0Rigidbody.velocity;
+        var ball1Velocity = ball1Rigidbody.velocity;
+
+        var avgVelocity = ball0Velocity + ball1Velocity;
+
+
+        if (ball.type != PooledObjectType.AmericanFootball)
+        {
+            ball.gameObject.GetComponent<Rigidbody2D>().velocity = avgVelocity;
+        }
+
         //Returns the balls to the pool
         ballsToMerge[0].GetComponent<Ball>()._pooledObject.ReturnToPool();
         ballsToMerge[1].GetComponent<Ball>()._pooledObject.ReturnToPool();

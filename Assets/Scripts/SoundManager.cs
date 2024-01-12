@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    
+
+
+    [SerializeField] private AudioMixer mixer;
 
     
     //singleton
@@ -34,9 +37,14 @@ public class SoundManager : MonoBehaviour
         _gameMusicSource.Play();
         BallManager.Instance.OnBallMerge += OnBallMerge;
         ButtonUI.Instance.OnButtonClick += OnButtonClick;
+        
+        
     }
-    
-    
+
+    public void MuteSFX()
+    {
+        mixer.SetFloat("SFX_Volume", 0);
+    }
     
     public void OnButtonClick()
     {

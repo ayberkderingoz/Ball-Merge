@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueWithAd()
     {
-        PanelManager.Instance.CloseGameOverPanel();
+        
         _loadRewarded.LoadAd();
     }
     
