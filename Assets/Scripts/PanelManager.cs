@@ -44,13 +44,15 @@ public class PanelManager : MonoBehaviour
     
     public void OpenRestartPanel()
     {
-        _restartPanel.SetActive(true);
         OnPanelOpen?.Invoke();
+        _restartPanel.SetActive(true);
+        
     }
     public void CloseRestartPanel()
     {
-        _restartPanel.SetActive(false);
         OnPanelClose?.Invoke();
+        _restartPanel.SetActive(false);
+        
     }
     
     public void OpenGameOverPanel()

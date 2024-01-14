@@ -59,10 +59,16 @@ public class ScoreManager : MonoBehaviour
         public void SaveMaxScore()
         {
                 var maxScore = PlayerPrefs.GetInt("MaxScore");
+                var maxAmericanScore = PlayerPrefs.GetInt("MaxAmericanScore");
                 var currentScore = int.Parse(scoreText.text);
+                var currentAmericanScore = int.Parse(americanScoreText.text);
                 if (currentScore > maxScore)
                 {
                         PlayerPrefs.SetInt("MaxScore",currentScore);
+                }
+                if (currentAmericanScore > maxAmericanScore)
+                {
+                        PlayerPrefs.SetInt("MaxAmericanScore",currentAmericanScore);
                 }
         }
         

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class ClickManager : MonoBehaviour
 {
@@ -17,6 +19,9 @@ public class ClickManager : MonoBehaviour
         _camera = Camera.main;
         PanelManager.Instance.OnPanelOpen += OnPanelOpen;
         PanelManager.Instance.OnPanelClose += OnPanelClose;
+        
+        
+        
 
     }
 
@@ -38,6 +43,17 @@ public class ClickManager : MonoBehaviour
             Vector3 mousePosition = Input.mousePosition;
 
             Vector3 worldPosition = _camera.ScreenToWorldPoint(mousePosition);
+            
+            //check if button is clicked
+            if (worldPosition.y > 4)
+            {
+                return;
+            }
+
+
+
+
+
 
             DropBall(worldPosition);
             _currentCooldown = 0f;

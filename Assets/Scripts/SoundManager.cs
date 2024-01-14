@@ -18,9 +18,11 @@ public class SoundManager : MonoBehaviour
     public AudioSource _gameMusicSource;
     public AudioSource _buttonSource;
     public AudioSource _popSource;
-
-
-
+    
+    
+    const string SFX_VOLUME = "SFX_Volume";
+    const string MUSIC_VOLUME = "MUSIC_Volume";
+    
 
     private void Awake()
     {
@@ -37,13 +39,29 @@ public class SoundManager : MonoBehaviour
         _gameMusicSource.Play();
         BallManager.Instance.OnBallMerge += OnBallMerge;
         ButtonUI.Instance.OnButtonClick += OnButtonClick;
-        
+        //null check for mixer
+        if (mixer == null)
+        {
+            Debug.LogError("No mixer found");
+        }
         
     }
 
     public void MuteSFX()
     {
-        mixer.SetFloat("SFX_Volume", 0);
+        mixer.SetFloat(SFX_VOLUME, -80f);
+    }
+    public void MuteGameMusic()
+    {
+        mixer.SetFloat(MUSIC_VOLUME, -80f);
+    }
+    public void UnMuteSFX()
+    {
+        mixer.SetFloat(SFX_VOLUME, 0f);
+    }
+    public void UnMuteGameMusic()
+    {
+        mixer.SetFloat(MUSIC_VOLUME, 0f);
     }
     
     public void OnButtonClick()

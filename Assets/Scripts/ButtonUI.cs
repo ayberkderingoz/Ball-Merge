@@ -8,6 +8,12 @@ public class ButtonUI : MonoBehaviour
 {
 
     public Action OnButtonClick;
+
+    [SerializeField] private GameObject _soundMute;
+    [SerializeField] private GameObject _musicMute;
+    
+    private bool _isSoundMute;
+    private bool _isMusicMute;
     
     
     //singleton
@@ -55,5 +61,36 @@ public class ButtonUI : MonoBehaviour
         
         
         
+    }
+
+    public void MuteSFX()
+    {
+        OnButtonClick?.Invoke();
+        _isSoundMute = !_isSoundMute;
+        if (_isSoundMute)
+        {
+            SoundManager.Instance.MuteSFX();
+            _soundMute.SetActive(true);
+        }
+        else
+        {
+            SoundManager.Instance.UnMuteSFX();
+            _soundMute.SetActive(false);
+        }
+    }
+    public void MuteMusic()
+    {
+        OnButtonClick?.Invoke();
+        _isMusicMute = !_isMusicMute;
+        if (_isMusicMute)
+        {
+            SoundManager.Instance.MuteGameMusic();
+            _musicMute.SetActive(true);
+        }
+        else
+        {
+            SoundManager.Instance.UnMuteGameMusic();
+            _musicMute.SetActive(false);
+        }
     }
 }
