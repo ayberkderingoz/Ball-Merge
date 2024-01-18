@@ -12,6 +12,7 @@ public class ButtonUI : MonoBehaviour
 
     [SerializeField] private GameObject _soundMute;
     [SerializeField] private GameObject _musicMute;
+    [SerializeField] private GameObject _settingsMenu;
     
     private bool _isSoundMute;
     private bool _isMusicMute;
@@ -36,18 +37,8 @@ public class ButtonUI : MonoBehaviour
     }
     
     //open menu
-    public void OpenMenu()
-    {
-        OnButtonClick?.Invoke();
-        PanelManager.Instance.OpenRestartPanel();
-        
-    }
 
-    public void CloseMenu()
-    {
-        OnButtonClick?.Invoke();
-        PanelManager.Instance.CloseRestartPanel();  
-    }
+
     public void OpenShop()
     {
         OnButtonClick?.Invoke();
@@ -74,13 +65,18 @@ public class ButtonUI : MonoBehaviour
         
         
     }
+    public void OpenSettings()
+    {
+        OnButtonClick?.Invoke();
+        _settingsMenu.SetActive(true);
+    }
+    public void CloseSettings()
+    {
+        OnButtonClick?.Invoke();
+        _settingsMenu.SetActive(false);
+    }
     
  
- 
-  
- 
- 
-    
     public void MuteSFX()
     {
         OnButtonClick?.Invoke();

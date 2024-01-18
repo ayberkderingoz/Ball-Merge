@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -18,8 +19,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource _gameMusicSource;
     public AudioSource _buttonSource;
     public AudioSource _popSource;
-    
-    
+
+    public GameObject _soundCross;
+    public GameObject _musicCross;
+
     const string SFX_VOLUME = "SFX_Volume";
     const string MUSIC_VOLUME = "MUSIC_Volume";
     
@@ -34,6 +37,17 @@ public class SoundManager : MonoBehaviour
     
     void Start()
     {
+        var sfx = PlayerPrefs.GetInt("SFX");
+        var music = PlayerPrefs.GetInt("MUSIC");
+        if (sfx == 0)
+        {
+            ButtonUI.Instance.MuteSFX();
+            
+        }
+        if (music == 0)
+        {
+            ButtonUI.Instance.MuteMusic();
+        }
         _gameMusicSource.volume = 0.5f;
         _gameMusicSource.loop = true;
         _gameMusicSource.Play();
@@ -50,18 +64,25 @@ public class SoundManager : MonoBehaviour
     public void MuteSFX()
     {
         mixer.SetFloat(SFX_VOLUME, -80f);
+        //save if volume is on or off
+        PlayerPrefs.SetInt("SFX", 0);
+        
     }
     public void MuteGameMusic()
     {
         mixer.SetFloat(MUSIC_VOLUME, -80f);
+        PlayerPrefs.SetInt("MUSIC", 0);
     }
     public void UnMuteSFX()
     {
         mixer.SetFloat(SFX_VOLUME, 0f);
+        PlayerPrefs.SetInt("SFX", 1);
+
     }
     public void UnMuteGameMusic()
     {
         mixer.SetFloat(MUSIC_VOLUME, 0f);
+        PlayerPrefs.SetInt("MUSIC", 1);
     }
     
     public void OnButtonClick()

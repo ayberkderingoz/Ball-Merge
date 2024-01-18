@@ -9,7 +9,6 @@ public class PanelManager : MonoBehaviour
     private static PanelManager _instance;
     public static PanelManager Instance => _instance;
     
-    [SerializeField] private GameObject _restartPanel;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _shopPanel;
     [SerializeField] private GameObject _addsButton;
@@ -27,7 +26,6 @@ public class PanelManager : MonoBehaviour
     
     void Start()
     {
-        _restartPanel.SetActive(false);
         _gameOverPanel.SetActive(false);
         _shopPanel.SetActive(false);
         
@@ -41,23 +39,12 @@ public class PanelManager : MonoBehaviour
     }
     private void OnRestart()
     {
-        CloseRestartPanel();
         CloseGameOverPanel();
         OnPanelClose?.Invoke();
     }
     
-    public void OpenRestartPanel()
-    {
-        OnPanelOpen?.Invoke();
-        _restartPanel.SetActive(true);
-        
-    }
-    public void CloseRestartPanel()
-    {
-        OnPanelClose?.Invoke();
-        _restartPanel.SetActive(false);
-        
-    }
+
+    
     
     public void OpenShopPanel()
     {

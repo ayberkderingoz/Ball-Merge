@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class ClickManager : MonoBehaviour
@@ -44,8 +46,10 @@ public class ClickManager : MonoBehaviour
 
             Vector3 worldPosition = _camera.ScreenToWorldPoint(mousePosition);
             
-            //check if button is clicked
-            if (worldPosition.y > 4)
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) {position = mousePosition}, results);
+            
+            if (Helpers.IsPointerOverUIElement(results))
             {
                 return;
             }
