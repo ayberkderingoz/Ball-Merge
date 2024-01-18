@@ -47,6 +47,17 @@ public class ButtonUI : MonoBehaviour
         OnButtonClick?.Invoke();
         PanelManager.Instance.CloseRestartPanel();  
     }
+    public void OpenShop()
+    {
+        OnButtonClick?.Invoke();
+        PanelManager.Instance.OpenShopPanel();
+    }
+    
+    public void CloseShop()
+    {
+        OnButtonClick?.Invoke();
+        PanelManager.Instance.CloseShopPanel();
+    }
     
     public void ContinueWithAd()
     {
@@ -93,4 +104,5 @@ public class ButtonUI : MonoBehaviour
             _musicMute.SetActive(false);
         }
     }
+    
 }

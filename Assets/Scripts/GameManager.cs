@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
     private LoadRewarded _loadRewarded;
     public GameObject adsManager;
     
+    
+    [SerializeField] private bool _adsEnabled = true;
+    public  bool AdsEnabled => _adsEnabled;
+
+
+
 
     private int _restartCount = 0;
     
@@ -33,6 +39,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
+        if (PlayerPrefs.HasKey("RemoveAds"))
+        {
+            _adsEnabled = false;
+        }
+        else
+        {
+            _adsEnabled = true;
+        }
+
+        if (!_adsEnabled) return;
         _loadBanner = adsManager.GetComponent<LoadBanner>();
         _loadInterstitial = adsManager.GetComponent<LoadInterstitial>();
         _loadRewarded = adsManager.GetComponent<LoadRewarded>();
@@ -44,7 +61,7 @@ public class GameManager : MonoBehaviour
         OnRestart?.Invoke();
         isPaused = false;
         _restartCount++;
-        if (_restartCount % 3 == 0)
+        if (_restartCount % 3 == 0 && _adsEnabled)
         {
             _loadInterstitial.LoadAd();
         }
@@ -60,8 +77,18 @@ public class GameManager : MonoBehaviour
 
     public void ContinueWithAd()
     {
-        
+        if (!_adsEnabled) return;
         _loadRewarded.LoadAd();
+    }
+    public void RemoveAds()
+    {
+        _adsEnabled = false;
+        _loadBanner.HideBannerAd();
+
+        PlayerPrefs.SetInt("RemoveAds", 1);
+        PlayerPrefs.Save();
+        
+        PanelManager.Instance.DisableAdsButton();
     }
     
 }

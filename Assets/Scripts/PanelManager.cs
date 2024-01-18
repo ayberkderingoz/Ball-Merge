@@ -11,6 +11,8 @@ public class PanelManager : MonoBehaviour
     
     [SerializeField] private GameObject _restartPanel;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _shopPanel;
+    [SerializeField] private GameObject _addsButton;
 
     public Action OnPanelOpen;
     public Action OnPanelClose;
@@ -27,6 +29,8 @@ public class PanelManager : MonoBehaviour
     {
         _restartPanel.SetActive(false);
         _gameOverPanel.SetActive(false);
+        _shopPanel.SetActive(false);
+        
         GameManager.Instance.OnGameOver += OnGameOver;
         GameManager.Instance.OnRestart += OnRestart;
     }
@@ -53,6 +57,31 @@ public class PanelManager : MonoBehaviour
         OnPanelClose?.Invoke();
         _restartPanel.SetActive(false);
         
+    }
+    
+    public void OpenShopPanel()
+    {
+        OnPanelOpen?.Invoke();
+        _shopPanel.SetActive(true);
+        if (!GameManager.Instance.AdsEnabled)
+            _addsButton.SetActive(false);
+
+    }
+    public void CloseShopPanel()
+    {
+        OnPanelClose?.Invoke();
+        _shopPanel.SetActive(false);
+        
+    }
+    
+    public void DisableAdsButton()
+    {
+        _addsButton.SetActive(false);
+    }
+    
+    public void EnableAdsButton()
+    {
+        _addsButton.SetActive(true);
     }
     
     public void OpenGameOverPanel()
