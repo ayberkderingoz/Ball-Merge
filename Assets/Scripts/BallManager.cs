@@ -132,7 +132,7 @@ public class BallManager : MonoBehaviour
 
     public GameObject GetRandomBall()
     {
-        PooledObjectType ballType = (PooledObjectType)Random.Range(1, 4);
+        PooledObjectType ballType = (PooledObjectType)Random.Range(1, 5);
         var ball = ObjectPool.Instance.GetPooledObject(ballType);
         activeBalls.Add(ball);
         ball.gameObject.GetComponent<Ball>().SetBall(ballType,ball);
