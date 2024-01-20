@@ -63,6 +63,11 @@ public class PanelManager : MonoBehaviour
     
     public void DisableAdsButton()
     {
+        Invoke(nameof(DisableAdsButtonDelayed), 0.5f);
+    }
+
+    private void DisableAdsButtonDelayed()
+    {
         _addsButton.SetActive(false);
     }
     

@@ -49,10 +49,10 @@ public class GameManager : MonoBehaviour
             _adsEnabled = true;
         }
 
+        _loadRewarded = adsManager.GetComponent<LoadRewarded>();
         if (!_adsEnabled) return;
         _loadBanner = adsManager.GetComponent<LoadBanner>();
         _loadInterstitial = adsManager.GetComponent<LoadInterstitial>();
-        _loadRewarded = adsManager.GetComponent<LoadRewarded>();
         _loadBanner.loadBanner();
     }
     public Action OnRestart;
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueWithAd()
     {
-        if (!_adsEnabled) return;
+        //if (!_adsEnabled) return; //TODO: bu durmali mi durmamali mi emin olmayan??
         _loadRewarded.LoadAd();
     }
     public void RemoveAds()

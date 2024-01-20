@@ -99,12 +99,17 @@ public class BallManager : MonoBehaviour
         OnBallMerge?.Invoke(); //plays sound for now
         
         StartCoroutine(SpawnBallAnimated(ball.gameObject));
+        
         ScoreManager.Instance.AddScore((int)nextBall);
 
         if (nextBall == PooledObjectType.AmericanFootball)
         {
             StartCoroutine(LerpBallToScoreImage(ball.gameObject));
             ScoreManager.Instance.AddAmericanFootballScore();
+        }
+        else
+        {
+            ball.gameObject.GetComponent<Collider2D>().enabled = true;
         }
 
 
