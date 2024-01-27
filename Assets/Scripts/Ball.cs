@@ -52,6 +52,11 @@ public class Ball : MonoBehaviour
                 elapsed = 0f;
             }
         }
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _rigidbody2D.AddForce(new Vector2(0.5f, 0.5f), ForceMode2D.Impulse);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

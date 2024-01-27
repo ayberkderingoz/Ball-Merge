@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CandyCoded.HapticFeedback;
 using Scripts.Enum;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -97,7 +98,7 @@ public class BallManager : MonoBehaviour
         ballsToMerge[1].GetComponent<Ball>()._pooledObject.ReturnToPool();
         
         OnBallMerge?.Invoke(); //plays sound for now
-        
+        HapticFeedback.LightFeedback();
         StartCoroutine(SpawnBallAnimated(ball.gameObject));
         
         ScoreManager.Instance.AddScore((int)nextBall);
