@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using SocialPlatforms;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -65,6 +67,7 @@ public class ScoreManager : MonoBehaviour
                 if (currentScore > maxScore)
                 {
                         PlayerPrefs.SetInt("MaxScore",currentScore);
+                        LeaderboardsManager.Instance.ReportScore(LeaderboardType.HighScore,currentScore);
                 }
                 if (currentAmericanScore > maxAmericanScore)
                 {

@@ -1,0 +1,9 @@
+lastUpgrade=01101
+proj.pluginVersion=0.11.01
+proj.AppId=817307217521
+and.BundleId=com.Chastoca.SevenBallFusion
+proj.classDir=Assets
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0a%3cresources%3e%0a++%3c%21--app_id--%3e%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e817307217521%3c%2fstring%3e%0a++%3c%21--package_name--%3e%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.Chastoca.SevenBallFusion%3c%2fstring%3e%0a++%3c%21--achievement+Supporter--%3e%0a++%3cstring+name%3d%22achievement_supporter%22+translatable%3d%22false%22%3eCgkI8dy52uQXEAIQAQ%3c%2fstring%3e%0a++%3c%21--achievement+Ball+Collector--%3e%0a++%3cstring+name%3d%22achievement_ball_collector%22+translatable%3d%22false%22%3eCgkI8dy52uQXEAIQAg%3c%2fstring%3e%0a++%3c%21--achievement+Sports+Fanatic--%3e%0a++%3cstring+name%3d%22achievement_sports_fanatic%22+translatable%3d%22false%22%3eCgkI8dy52uQXEAIQAw%3c%2fstring%3e%0a++%3c%21--achievement+Football+Frenzy--%3e%0a++%3cstring+name%3d%22achievement_football_frenzy%22+translatable%3d%22false%22%3eCgkI8dy52uQXEAIQBA%3c%2fstring%3e%0a++%3c%21--achievement+Cascade+Champion--%3e%0a++%3cstring+name%3d%22achievement_cascade_champion%22+translatable%3d%22false%22%3eCgkI8dy52uQXEAIQBQ%3c%2fstring%3e%0a++%3c%21--achievement+Precision+Dropper--%3e%0a++%3cstring+name%3d%22achievement_precision_dropper%22+translatable%3d%22false%22%3eCgkI8dy52uQXEAIQBg%3c%2fstring%3e%0a++%3c%21--achievement+Ballistic+Blunder--%3e%0a++%3cstring+name%3d%22achievement_ballistic_blunder%22+translatable%3d%22false%22%3eCgkI8dy52uQXEAIQBw%3c%2fstring%3e%0a++%3c%21--leaderboard+High+Score--%3e%0a++%3cstring+name%3d%22leaderboard_high_score%22+translatable%3d%22false%22%3eCgkI8dy52uQXEAIQCA%3c%2fstring%3e%0a%3c%2fresources%3e
+and.ClientId=
+android.SetupDone=true

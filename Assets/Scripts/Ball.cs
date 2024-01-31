@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Enum;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public PooledObjectType _type;
+    public BallType _type;
     public PooledObject _pooledObject;
     public bool isActive = false;
     public  Rigidbody2D _rigidbody2D;
@@ -68,7 +69,7 @@ public class Ball : MonoBehaviour
     }
 
 
-    public void SetBall(PooledObjectType type,PooledObject pooledObject)
+    public void SetBall(BallType type,PooledObject pooledObject)
     {
         _type = type;
         _pooledObject = pooledObject;

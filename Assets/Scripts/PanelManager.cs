@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Ads;
 using UnityEngine;
 
 public class PanelManager : MonoBehaviour
@@ -50,7 +51,7 @@ public class PanelManager : MonoBehaviour
     {
         OnPanelOpen?.Invoke();
         _shopPanel.SetActive(true);
-        if (!GameManager.Instance.AdsEnabled)
+        if (!AdManager.Instance.AdsEnabled)
             _addsButton.SetActive(false);
 
     }

@@ -849,8 +849,12 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    Game Performance: 0
     Legacy Analytics: 1
-    Purchasing: 1
+    Purchasing: 0
+    UDP: 0
     Unity Ads: 1
   luminIcon:
     m_Name: 
@@ -865,11 +869,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 06618b19-05ff-4a58-bb50-2e98b0ee1892
+  cloudProjectId: 36415d0a-a697-4c6e-b2a1-0f4b9a61e1ca
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BallMerge
-  organizationId: ayberkderingoz
+  projectName: 7Ball Fusion
+  organizationId: chastoca
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

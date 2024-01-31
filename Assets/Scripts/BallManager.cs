@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CandyCoded.HapticFeedback;
+using DefaultNamespace;
 using Scripts.Enum;
+using SocialPlatforms;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using Achievement = UnityEngine.SocialPlatforms.Impl.Achievement;
 using Random = UnityEngine.Random;
 
 public class BallManager : MonoBehaviour
@@ -25,6 +27,14 @@ public class BallManager : MonoBehaviour
     [SerializeField] private GameObject _americanBallScoreImage;
     
     public Action OnBallMerge;
+
+    private int _chainCount;
+
+    private PooledObjectType _lastMergedBall;
+
+
+
+    
 
     public void AddBallToMerge(GameObject ball)
     {
@@ -108,6 +118,11 @@ public class BallManager : MonoBehaviour
         {
             StartCoroutine(LerpBallToScoreImage(ball.gameObject));
             ScoreManager.Instance.AddAmericanFootballScore();
+            AchievementsManager.Instance.GetAchievement(AchievementType.BallCollector).SetCompleted();
+            if (GameTimer.Instance.Time > GameTimer.Instance.MaxTime)
+            {
+                AchievementsManager.Instance.GetAchievement(AchievementType.FootballFrenzy).SetCompleted();
+            }
         }
         else
         {
