@@ -41,6 +41,7 @@ public class BallManager : MonoBehaviour
         }
     }
 
+    
 
     void Start()
     {
@@ -132,6 +133,8 @@ public class BallManager : MonoBehaviour
         {
             _instance = this;
         }
+        OnBallMerge+= SoundManager.Instance.OnBallMerge;
+
     }
     
     

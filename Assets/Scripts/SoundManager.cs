@@ -50,7 +50,7 @@ public class SoundManager : MonoBehaviour
         _gameMusicSource.volume = 0.5f;
         _gameMusicSource.loop = true;
         _gameMusicSource.Play();
-        BallManager.Instance.OnBallMerge += OnBallMerge;
+        
         ButtonUI.Instance.OnButtonClick += OnButtonClick;
         //null check for mixer
         if (mixer == null)

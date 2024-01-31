@@ -26,7 +26,7 @@ public class PanelManager : MonoBehaviour
     
     void Start()
     {
-        _gameOverPanel.SetActive(false);
+        //_gameOverPanel.SetActive(false);
         _shopPanel.SetActive(false);
         
         GameManager.Instance.OnGameOver += OnGameOver;
