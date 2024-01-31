@@ -28,9 +28,13 @@ public class BallManager : MonoBehaviour
     
     public Action OnBallMerge;
 
-    private int _chainCount;
+    public int _chainCount;
+    private int _spawnedBallCount;
 
-    private PooledObjectType _lastMergedBall;
+    private bool _isBowlingBallReached;
+
+    public BallType _lastMergedBall;
+    
 
 
 
@@ -67,6 +71,11 @@ public class BallManager : MonoBehaviour
 
     private void OnGameOver()
     {
+        if (!_isBowlingBallReached)
+        {
+            AchievementsManager.Instance.GetAchievement(AchievementType.BallisticBlunder).SetCompleted();
+        }
+        _isBowlingBallReached = false;
         Restart();
     }
 
@@ -75,6 +84,25 @@ public class BallManager : MonoBehaviour
     {
         //get the position between the two balls from ballsToMerge
         var nextBall = GetNextBall();
+        if(nextBall == BallType.BowlingBall)
+        {
+            _isBowlingBallReached = true;
+        }
+        if (nextBall == _lastMergedBall+1)
+        {
+            _chainCount++;
+            if (_chainCount == 5)
+            {
+                AchievementsManager.Instance.GetAchievement(AchievementType.CascadeChampion).SetCompleted();
+            }
+            _lastMergedBall = nextBall;
+            
+        }
+        else
+        {
+            _lastMergedBall = nextBall;
+            _chainCount = 0;
+        }
         var ball = GetBall(nextBall);
         
         ball.transform.position = GetPositionBetween(ballsToMerge[0].transform.position, ballsToMerge[1].transform.position);
@@ -114,12 +142,12 @@ public class BallManager : MonoBehaviour
         
         ScoreManager.Instance.AddScore((int)nextBall);
 
-        if (nextBall == PooledObjectType.AmericanFootball)
+        if (nextBall == BallType.AmericanFootball)
         {
             StartCoroutine(LerpBallToScoreImage(ball.gameObject));
             ScoreManager.Instance.AddAmericanFootballScore();
             AchievementsManager.Instance.GetAchievement(AchievementType.BallCollector).SetCompleted();
-            if (GameTimer.Instance.Time > GameTimer.Instance.MaxTime)
+            if (GameTimer.Instance.Time < GameTimer.Instance.MaxTime)
             {
                 AchievementsManager.Instance.GetAchievement(AchievementType.FootballFrenzy).SetCompleted();
             }
@@ -132,7 +160,7 @@ public class BallManager : MonoBehaviour
 
     }
 
-    private PooledObjectType GetNextBall()
+    private BallType GetNextBall()
     {
         var type = ballsToMerge[0].GetComponent<Ball>()._type;
         return type + 1;
@@ -156,22 +184,36 @@ public class BallManager : MonoBehaviour
 
     public GameObject GetRandomBall()
     {
-        PooledObjectType ballType = (PooledObjectType)Random.Range(1, 5);
-        var ball = ObjectPool.Instance.GetPooledObject(ballType);
+
+        var random = Random.Range(1, 5);
+        PooledObjectType ballTypePooledObject = (PooledObjectType)random;
+        BallType ballType = (BallType)random-1;
+        var ball = ObjectPool.Instance.GetPooledObject(ballTypePooledObject);
         activeBalls.Add(ball);
         ball.gameObject.GetComponent<Ball>().SetBall(ballType,ball);
+        _spawnedBallCount++;
+        CheckBallCount();
         return ball.gameObject;
     }
     
-    public PooledObject GetBall(PooledObjectType type)
+    private void CheckBallCount()
     {
-        var ball = ObjectPool.Instance.GetPooledObject(type);
+        if (_spawnedBallCount == 100)
+        {
+            AchievementsManager.Instance.GetAchievement(AchievementType.PrecisionDropper).SetCompleted();
+        }
+    }
+    
+    public PooledObject GetBall(BallType type)
+    {
+        var ball = ObjectPool.Instance.GetPooledObject((PooledObjectType)type+1);
         activeBalls.Add(ball);
         return ball;
     }
 
     public void Restart()
     {
+
         foreach (var ball in activeBalls)
         {
             ball.ReturnToPool();
@@ -179,6 +221,9 @@ public class BallManager : MonoBehaviour
         activeBalls.Clear();
         ballsToMerge.Clear();
         BallSpawner.Instance.SpawnBall();
+        _lastMergedBall = BallType.TennisBall;
+        _chainCount = 0;
+        _spawnedBallCount = 0;
     }
     //Create ball smoothly
     private IEnumerator SpawnBallAnimated(GameObject ball)

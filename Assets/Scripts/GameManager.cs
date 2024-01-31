@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     public void RemoveAds()
     {
         AdManager.Instance.RemoveAds();
-        PanelManager.Instance.DisableAdsButton();
+        //PanelManager.Instance.DisableAdsButton();
     }
     
 }

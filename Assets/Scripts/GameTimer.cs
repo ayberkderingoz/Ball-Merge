@@ -26,6 +26,19 @@ namespace DefaultNamespace
             }
         }
 
+        void Start()
+        {
+            _time = 0;
+            GameManager.Instance.OnRestart += OnRestart;
+        }
+
+        
+        private void OnRestart()
+        {
+            _time = 0;
+        }
+        
+
         void Update()
         {
             if(_isTimeOver) return;

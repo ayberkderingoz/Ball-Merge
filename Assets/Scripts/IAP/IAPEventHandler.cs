@@ -11,9 +11,9 @@ namespace IAP
     public class IAPEventHandler : MonoBehaviour
     {
         public static IAPEventHandler Instance;
-        [SerializeField] private GameObject waitingPanel;
-        [SerializeField] private GameObject failText;
-        [SerializeField] private GameObject loadingImage;
+        //[SerializeField] private GameObject waitingPanel;
+        //[SerializeField] private GameObject failText;
+        //[SerializeField] private GameObject loadingImage;
         [SerializeField] private List<GameObject> objectsToHideAfterRemoveAds;
 
         private void Awake()
@@ -23,9 +23,9 @@ namespace IAP
 
         public void OpenWaitingScreen()
         {
-            failText.SetActive(false);
-            waitingPanel.SetActive(true);
-            loadingImage.SetActive(true);
+            //failText.SetActive(false);
+            //waitingPanel.SetActive(true);
+            //loadingImage.SetActive(true);
         }
 
 
@@ -49,20 +49,25 @@ namespace IAP
                     throw new ArgumentOutOfRangeException();
             }
 
-            waitingPanel.SetActive(false);
+            //waitingPanel.SetActive(false);
         }
 
         private void BoughtRemoveAds()
         {
             AdManager.Instance.RemoveAds();
-            objectsToHideAfterRemoveAds.ForEach(o => o.SetActive(false));
+            Invoke(nameof(HideDelayed), 0.5f);
         }
 
 
+        private void HideDelayed()
+        {
+            objectsToHideAfterRemoveAds.ForEach(o => o.SetActive(false));
+        }
+
         public void OnPurchaseFailed(Product p, PurchaseFailureDescription r)
         {
-            loadingImage.SetActive(false);
-            failText.SetActive(true);
+            //loadingImage.SetActive(false);
+            //failText.SetActive(true);
             switch (r.reason)
             {
                 case PurchaseFailureReason.PurchasingUnavailable:
@@ -86,8 +91,8 @@ namespace IAP
             print("Purchase failed: " + p.definition.id + " " + r);
             print("Failure reason: " + r);
 
-            waitingPanel.SetActive(false);
-            loadingImage.SetActive(true);
+            //waitingPanel.SetActive(false);
+            //loadingImage.SetActive(true);
         }
 
         public void RestoreButton()
