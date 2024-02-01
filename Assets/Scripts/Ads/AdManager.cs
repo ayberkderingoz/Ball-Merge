@@ -191,6 +191,7 @@ namespace Ads
             if (rewardedAdState == AdState.Loaded)
             {
                 onRewardedAdFinishedAction = rewardedAdFinishedAction;
+                onRewardedAdUserEarnedRewardAction = rewardedAdFinishedAction;
                 rewardedAdController.Show();
             }
         }

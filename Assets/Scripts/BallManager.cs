@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using CandyCoded.HapticFeedback;
+
 using DefaultNamespace;
 using Scripts.Enum;
 using SocialPlatforms;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using Achievement = UnityEngine.SocialPlatforms.Impl.Achievement;
 using Random = UnityEngine.Random;
 
 public class BallManager : MonoBehaviour
@@ -34,11 +33,11 @@ public class BallManager : MonoBehaviour
     private bool _isBowlingBallReached;
 
     public BallType _lastMergedBall;
-    
 
 
 
-    
+
+
 
     public void AddBallToMerge(GameObject ball)
     {
@@ -137,7 +136,7 @@ public class BallManager : MonoBehaviour
         ballsToMerge[1].GetComponent<Ball>()._pooledObject.ReturnToPool();
         
         OnBallMerge?.Invoke(); //plays sound for now
-        HapticFeedback.LightFeedback();
+        Vibrator.Vibrate(100);
         StartCoroutine(SpawnBallAnimated(ball.gameObject));
         
         ScoreManager.Instance.AddScore((int)nextBall);
@@ -261,5 +260,7 @@ public class BallManager : MonoBehaviour
         }
         ball.GetComponent<Ball>()._pooledObject.ReturnToPool();
     }
+
+    
 
 }

@@ -12,6 +12,8 @@ public class ButtonUI : MonoBehaviour
 
     [SerializeField] private GameObject _soundMute;
     [SerializeField] private GameObject _musicMute;
+    [SerializeField] private GameObject _vibrationMute;
+    
     [SerializeField] private GameObject _settingsMenu;
     
     private bool _isSoundMute;
@@ -107,5 +109,15 @@ public class ButtonUI : MonoBehaviour
             _musicMute.SetActive(false);
         }
     }
+    
+    
+    public void MuteVibration()
+    {
+        OnButtonClick?.Invoke();
+        _vibrationMute.SetActive(!_vibrationMute.activeSelf);
+        Vibrator.SetVibrationEnabled(!_vibrationMute.activeSelf);
+        
+    }
+    
     
 }

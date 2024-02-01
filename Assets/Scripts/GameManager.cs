@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     public void ContinueWithAd()
     {
         //if (!_adsEnabled) return; //TODO: bu durmali mi durmamali mi emin olmayan??
-        AdManager.Instance.ShowRewardedAd( PanelManager.Instance.CloseGameOverPanel);
+        AdManager.Instance.ShowRewardedAd(PanelManager.Instance.CloseGameOverPanel);
     }
     public void RemoveAds()
     {

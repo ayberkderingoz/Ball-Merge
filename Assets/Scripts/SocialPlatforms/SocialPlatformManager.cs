@@ -39,12 +39,7 @@ namespace SocialPlatforms
 #if UNITY_EDITOR
             print("Social platforms are not supported in the editor.");
 #elif UNITY_ANDROID
-            PlayGamesPlatform.Activate();
-            PlayGamesPlatform.Instance.Authenticate((signInStatus) =>
-            {
-                var status = false || signInStatus == SignInStatus.Success;
-                AuthenticateSocialCallBack(status);
-            });
+            
 #elif UNITY_IOS
             Social.localUser.Authenticate(AuthenticateSocialCallBack);
             GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
@@ -78,7 +73,7 @@ namespace SocialPlatforms
 #elif UNITY_IOS
 				Social.ShowLeaderboardUI();
 #elif UNITY_ANDROID
-				PlayGamesPlatform.Instance.ShowLeaderboardUI();
+				
 #endif
         }
 
@@ -90,7 +85,7 @@ namespace SocialPlatforms
 #elif UNITY_IOS
 				Social.ShowAchievementsUI ();
 #elif UNITY_ANDROID
-				PlayGamesPlatform.Instance.ShowAchievementsUI();
+				
 #endif
         }
 

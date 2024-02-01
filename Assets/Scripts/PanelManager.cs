@@ -84,6 +84,8 @@ public class PanelManager : MonoBehaviour
     }
     public void CloseGameOverPanel()
     {
+        
+        Debug.Log("Vizzzzz");
         _gameOverPanel.SetActive(false);
         OnPanelClose?.Invoke();
     }
