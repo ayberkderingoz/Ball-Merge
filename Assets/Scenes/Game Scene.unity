@@ -785,7 +785,7 @@ MonoBehaviour:
   androidAppKey: 5543260
   iosAppKey: 5543261
   activateAds: 1
-  testMode: 1
+  testMode: 0
   activateInterstitial: 1
   activateRewarded: 1
   activateBanner: 1

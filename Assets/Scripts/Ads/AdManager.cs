@@ -115,7 +115,7 @@ namespace Ads
             if (!AdsEnabled)
             {
                 activateInterstitial = false;
-                activateRewarded = false;
+                activateRewarded = true;
                 activateBanner = false;
                 yield break;
             }
@@ -187,7 +187,7 @@ namespace Ads
         {
             print("is rewarded ad ready: " + rewardedAdState);
 
-            if (!AdsEnabled) return;
+            //if (!AdsEnabled) return;
             if (rewardedAdState == AdState.Loaded)
             {
                 onRewardedAdFinishedAction = rewardedAdFinishedAction;
@@ -195,6 +195,7 @@ namespace Ads
                 rewardedAdController.Show();
             }
         }
+        
 
 
         private void OnInterstitialAdStateChanged(AdState state)
