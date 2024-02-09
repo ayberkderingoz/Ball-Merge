@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SocialPlatforms;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -117,6 +118,12 @@ public class ButtonUI : MonoBehaviour
         _vibrationMute.SetActive(!_vibrationMute.activeSelf);
         Vibrator.SetVibrationEnabled(!_vibrationMute.activeSelf);
         
+    }
+    
+    public void OpenLeaderboard()
+    {
+        OnButtonClick?.Invoke();
+        SocialPlatformManager.Instance.ShowLeaderboards();
     }
     
     
