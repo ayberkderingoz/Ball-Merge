@@ -2910,7 +2910,6 @@ GameObject:
   - component: {fileID: 817223262}
   - component: {fileID: 817223265}
   - component: {fileID: 817223264}
-  - component: {fileID: 817223263}
   m_Layer: 5
   m_Name: TitleBanner
   m_TagString: Untagged
@@ -2939,34 +2938,6 @@ RectTransform:
   m_AnchoredPosition: {x: 4.499817, y: -61.869995}
   m_SizeDelta: {x: -9, y: 123.83002}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &817223263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817223261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  productId: com.ayberkderingoz.ballmerge.removeads
-  buttonType: 0
-  consumePurchase: 1
-  onTransactionsRestored:
-    m_PersistentCalls:
-      m_Calls: []
-  onPurchaseComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onPurchaseFailed:
-    m_PersistentCalls:
-      m_Calls: []
-  onProductFetched:
-    m_PersistentCalls:
-      m_Calls: []
-  button: {fileID: 0}
 --- !u!114 &817223264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5417,7 +5388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
   m_AnchorMin: {x: 0.38875002, y: 0}
   m_AnchorMax: {x: 0.64875, y: 0.2778844}
-  m_AnchoredPosition: {x: 0, y: -289.9999}
+  m_AnchoredPosition: {x: 0, y: -289.99988}
   m_SizeDelta: {x: -16.610596, y: 18.012405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704503563
@@ -6405,7 +6376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.25, y: -41.500004}
+  m_AnchoredPosition: {x: -0.25, y: -41.500008}
   m_SizeDelta: {x: -0.5, y: 91.82019}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1912726741
@@ -6542,7 +6513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.499}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 304, y: 765}
+  m_AnchoredPosition: {x: 304, y: 765.0003}
   m_SizeDelta: {x: 100, y: 99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &1921668092
