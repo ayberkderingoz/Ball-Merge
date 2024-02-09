@@ -100,7 +100,7 @@ public class BallManager : MonoBehaviour
         else
         {
             _lastMergedBall = nextBall;
-            _chainCount = 0;
+            _chainCount = 1;
         }
         var ball = GetBall(nextBall);
         

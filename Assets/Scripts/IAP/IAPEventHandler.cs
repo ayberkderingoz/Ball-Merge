@@ -29,6 +29,13 @@ namespace IAP
         }
 
 
+        public void OnTransactionRestore(bool restore,string s)
+        {
+            Debug.Log("Transaction restore success: " + restore);
+            //waitingPanel.SetActive(false);
+
+        }
+
         public void OnPurchaseCompleted(Product p)
         {
             print("Purchase completed: " + p.definition.id);

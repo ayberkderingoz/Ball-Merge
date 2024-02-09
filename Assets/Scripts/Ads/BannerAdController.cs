@@ -43,7 +43,6 @@ namespace Ads
             };
 
             Advertisement.Banner.Load(adUnitId, options);
-            Advertisement.Banner.Show(adUnitId);
         }
 
         public void Hide()
@@ -54,6 +53,7 @@ namespace Ads
         private void OnBannerLoaded()
         {
             Debug.Log("Banner loaded");
+            Advertisement.Banner.Show(adUnitId);
 
             SetState(AdState.Loaded);
         }

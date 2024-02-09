@@ -112,12 +112,12 @@ namespace Ads
 
             AdsEnabled = PlayerPrefs.GetInt(ShowAdsKey, 1) == 1;
             print("Ads enabled: " + AdsEnabled);
+            activateRewarded = true;
+
             if (!AdsEnabled)
             {
                 activateInterstitial = false;
-                activateRewarded = true;
                 activateBanner = false;
-                yield break;
             }
 
 
@@ -130,8 +130,12 @@ namespace Ads
 #endif
 
 
-            interstitialAdController = GetComponent<InterstitialAdController>();
-            bannerAdController = GetComponent<BannerAdController>();
+            if (AdsEnabled)
+            {
+                interstitialAdController = GetComponent<InterstitialAdController>();
+                bannerAdController = GetComponent<BannerAdController>();
+            }
+            
             rewardedAdController = GetComponent<RewardedAdController>();
 
 
